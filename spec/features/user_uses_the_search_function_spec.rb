@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User' do
-  context 'visits root and searches a zip code' do
+  scenario 'visits root and searches a zip code' do
     # As a user
     # When I visit "/"
     visit '/'
