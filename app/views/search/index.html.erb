@@ -1,1 +1,15 @@
-<%= @body %>
+<% @stations_list.each do |s| %>
+  <div>
+    <p>Name:
+    <%= s.name %></p>
+    <p>Address:
+    <%= s.address %></p>
+    <p>Fuel Types:
+    <%= s.fuel_types %></p>
+    <p>Distance:
+    <%= s.distance %></p>
+    <p>Access Times:
+    <%= s.access_times %></p>
+    <p>------------------------------------------------</p>
+  </div>
+<% end %>

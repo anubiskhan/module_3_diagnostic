@@ -7,18 +7,19 @@ class SearchController < ApplicationController
       req.params['limit'] = "10"
     end
     @body = JSON.parse(@resp.body)
-    @stations = @body['fuel_stations']
-    @stations.each do |station|
-      Station.new(station)
+    @stations_api = @body['fuel_stations']
+    @stations_list = []
+    @stations_api.each do |station|
+      @stations_list.push(Station.new(station))
     end
-    binding.pry
+    # binding.pry
   end
 
   class Station
     def initialize(station_hash)
       @station_hash = station_hash
-      byebug
     end
+
     def name
       @station_hash['station_name']
     end
@@ -32,12 +33,11 @@ class SearchController < ApplicationController
     end
 
     def distance
-
+      @station_hash['distance']
     end
 
     def access_times
-
+      @station_hash['access_days_time']
     end
   end
 end
-# Name, Address, Fuel Types, Distance, and Access Times
