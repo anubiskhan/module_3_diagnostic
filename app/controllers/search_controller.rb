@@ -1,9 +1,9 @@
 class SearchController < ApplicationController
   def index
-    byebug
-    Faraday.get("https://developer.nrel.gov//api/alt-fuel-stations/v1/nearest.json") do |req|
-      req.params['X-Api-Key'] = ENV['DEV_NET_API_KEY']
+    @resp = Faraday.get("https://developer.nrel.gov//api/alt-fuel-stations/v1/nearest.json") do |req|
+      req.headers['X-Api-Key'] = ENV['DEV_NET_API_KEY']
       req.params['location'] = "#{params[:q]}"
     end
+    @body = JSON.parse(@resp.body)
   end
 end
